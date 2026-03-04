@@ -36,7 +36,7 @@
             <label for="supplier_id" class="block text-sm font-medium text-gray-700">Fornecedor (Opcional)</label>
             <select name="supplier_id" id="supplier_id" x-model="supplierId"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm border p-2 bg-white">
-                <option value="0">-- Gasto Avulso (Sem Fornecedor) --</option>
+                <option value="">-- Gasto Avulso (Sem Fornecedor) --</option>
                 @foreach ($suppliers as $supplier)
                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                 @endforeach
