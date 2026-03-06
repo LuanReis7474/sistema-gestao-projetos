@@ -6,7 +6,7 @@ Esta hospedado em: https://sistema-gestao-projetos-ppqz.onrender.com/projetos
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/LuanReis7474/sistema-gestao-projetos/test.yml?branch=main&style=for-the-badge&logo=github&label=Build%20Status)
 ![Laravel Version](https://img.shields.io/badge/Laravel-12.0-FF2D20?style=for-the-badge&logo=laravel)
 ![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php)
-![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+
 
 
 ## 🚀 Tecnologias Utilizadas
@@ -45,7 +45,7 @@ para rodar os testes localmente:
 
 php artisan test --filter FlowTest
 ```
-🔗 **[Acessar a Documentação Interativa no Swagger](https://app.swaggerhub.com/apis-docs/LuanReisDeCarvalho/managerProject/1.0.0)**
+
 
 <img width="1219" height="541" alt="image" src="https://github.com/user-attachments/assets/b1587337-a42c-4458-bb34-5cea479c8009" />
 
