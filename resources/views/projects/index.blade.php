@@ -60,6 +60,9 @@
                                 Custo ao Cliente</th>
                             <th scope="col"
                                 class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                Status projeto</th>
+                            <th scope="col"
+                                class="px-4 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">
                                 Ações</th>
                         </tr>
                     </thead>
@@ -108,6 +111,43 @@
                                     R$ {{ number_format($projectService->getCostToCostumer($project), 2, ',', '.') }}
                                 </td>
 
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-center font-semibold text-purple-600"
+                                    x-data="{
+                                        isAtivo: {{ $project->status ? 'true' : 'false' }},
+                                        toggleStatus() {
+                                            if (confirm('Tem certeza que deseja alterar o status desse projeto?')) {
+                                                fetch(`/projetos/{{ $project->id }}/status`, {
+                                                        method: 'PATCH',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                            'X-CSRF-TOKEN': document.querySelector('meta[name=\'csrf-token\']').content,
+                                                            'Accept': 'application/json'
+                                                        },
+                                                        body: JSON.stringify({ status: this.isAtivo ? 1 : 0 })
+                                                    })
+                                                    .then(res => {
+                                                        if (res.ok) {
+                                                            window.dispatchEvent(new CustomEvent('toast-sucesso'));
+                                                        } else {
+                                                            this.isAtivo = !this.isAtivo;
+                                                        }
+                                                    })
+                                            }
+                                        }
+                                    }">
+
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" x-model="isAtivo" @change="toggleStatus"
+                                            class="sr-only peer">
+
+                                        <div
+                                            class="relative w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
+                                        </div>
+
+                                        <span class="ms-3 text-sm font-medium text-gray-700"
+                                            x-text="isAtivo ? 'Ativo' : 'Inativo'"></span>
+                                    </label>
+                                </td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex items-center justify-center gap-2">
                                         <a href="/projetos/{{ $project->id }}/editar"
@@ -163,6 +203,34 @@
     <div class="mt-6 px-4 sm:px-0 max-w-6xl mx-auto">
         {{ $projects->links() }}
     </div>
+
+    <div x-data="{ show: false }" @toast-sucesso.window="show = true; setTimeout(() => show = false, 3000)" x-show="show"
+        x-transition.opacity.duration.300ms
+        class="fixed bottom-5 right-5 flex items-center w-full max-w-xs p-4 space-x-3 text-gray-500 bg-white rounded-lg shadow-lg border border-gray-100"
+        style="display: none;" role="alert">
+
+        <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+        </div>
+        <div class="ml-3 text-sm font-normal">Status atualizado com sucesso.</div>
+    </div>
+
+    <div x-data="{ show: false }" @toast-delete-sucesso.window="show = true; setTimeout(() => show = false, 3000)"
+        x-show="show" x-transition.opacity.duration.20ms
+        class="fixed bottom-5 right-5 flex items-center w-full max-w-xs p-4 space-x-3 text-gray-500 bg-white rounded-lg shadow-lg border border-gray-100"
+        style="display: none;" role="alert">
+
+        <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+        </div>
+        <div class="ml-3 text-sm font-normal">Projeto apagado com sucesso.</div>
+    </div>
 @endsection
 
 <form id="form-delete" action="" method="POST" class="hidden">
@@ -175,6 +243,7 @@
         if (confirm('Tem certeza que deseja excluir este projeto? Esta ação não pode ser desfeita.')) {
             const form = document.getElementById('form-delete');
             form.action = `/projetos/${id}`;
+            window.dispatchEvent(new CustomEvent('toast-delete-sucesso'));
             form.submit();
         }
     }

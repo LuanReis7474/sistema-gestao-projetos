@@ -19,6 +19,7 @@ Route::controller(ProjectController::class)
         Route::put('/{id}', 'update')->name('update');
 
         Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::patch('/{id}/status', 'toggleStatus')->name('toggleStatus');
     });
 
 Route::controller(ExpenseController::class)

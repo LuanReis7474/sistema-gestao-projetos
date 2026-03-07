@@ -45,6 +45,7 @@ class ProjectController extends Controller
             'type'         => 'required|string|max:100',
             'description'  => 'nullable|string',
             'total_budget' => 'required|numeric|min:0',
+            'status'       => 'boolean'
         ], [
             'name.required' => 'O campo nome é obrigatório.',
             'total_budget.numeric' => 'O orçamento deve ser um valor numérico.'
@@ -57,6 +58,23 @@ class ProjectController extends Controller
         return redirect()->route('projects.index')->with('success', 'Projeto cadastrado com sucesso!');
     }
 
+    public function toggleStatus(Request $request, $id)
+    {
+
+        $project = Project::where('session_id', session()->getId())
+            ->findOrFail($id);
+
+
+        $project->status = $request->status;
+        $project->save();
+
+
+        return response()->json([
+            'message' => 'Status atualizado com sucesso!',
+            'new_status' => $project->status
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -64,6 +82,7 @@ class ProjectController extends Controller
             'type'         => 'required|string|max:100',
             'description'  => 'nullable|string',
             'total_budget' => 'required|numeric|min:0',
+            'status'       => 'boolean'
         ], [
             'name.required' => 'O campo nome é obrigatório.',
             'total_budget.numeric' => 'O orçamento deve ser um valor numérico.'

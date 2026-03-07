@@ -6,7 +6,7 @@ Esta hospedado em: https://sistema-gestao-projetos-ppqz.onrender.com/projetos
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/LuanReis7474/sistema-gestao-projetos/test.yml?branch=main&style=for-the-badge&logo=github&label=Build%20Status)
 ![Laravel Version](https://img.shields.io/badge/Laravel-12.0-FF2D20?style=for-the-badge&logo=laravel)
 ![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php)
-
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
 
 ## 🚀 Tecnologias Utilizadas
@@ -45,24 +45,4 @@ para rodar os testes localmente:
 
 php artisan test --filter FlowTest
 ```
-
-
-<img width="1219" height="541" alt="image" src="https://github.com/user-attachments/assets/b1587337-a42c-4458-bb34-5cea479c8009" />
-
-<img width="1206" height="334" alt="image" src="https://github.com/user-attachments/assets/d1bce906-52ce-4fde-be26-2dcd3d239488" />
-
-<img width="771" height="424" alt="image" src="https://github.com/user-attachments/assets/edcdd556-e3a6-43ce-8840-f1eacf09f9ee" />
-
-<img width="1215" height="304" alt="image" src="https://github.com/user-attachments/assets/ec6511fe-3001-46e0-b64d-be772609fc71" />
-
-<img width="717" height="642" alt="image" src="https://github.com/user-attachments/assets/40d9cb01-6413-4b77-aa7c-28c6d5c53dbe" />
-
-<img width="660" height="634" alt="image" src="https://github.com/user-attachments/assets/7abdac0c-d2de-46aa-a6a4-cfd60fa536b6" />
-
-
-
-
-
-
-
-
+🔗 **[Acessar a Documentação Interativa no Swagger](https://app.swaggerhub.com/apis-docs/LuanReisDeCarvalho/managerProject/1.0.0)**

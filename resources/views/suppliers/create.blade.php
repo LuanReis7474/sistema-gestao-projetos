@@ -18,11 +18,11 @@
 
             <div class="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t border-gray-200">
                 <a href="{{ route('projects.index') }}"
-                    class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md transition-colors text-sm font-medium text-center w-full sm:w-auto">
+                    class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md transition-colors text-sm font-medium text-center w-full sm:w-auto">
                     Cancelar
                 </a>
                 <button type="submit"
-                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors text-sm font-medium w-full sm:w-auto">
+                    class="cursor-pointer px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors text-sm font-medium w-full sm:w-auto">
                     Salvar Fornecedor
                 </button>
             </div>

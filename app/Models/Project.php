@@ -15,7 +15,8 @@ class Project extends Model
         'session_id',
         'total_budget',
         'type',
-        'description'
+        'description',
+        'status'
     ];
 
     public function expenses(): HasMany
