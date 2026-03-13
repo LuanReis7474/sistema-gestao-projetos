@@ -88,7 +88,7 @@ class ProjectController extends Controller
             'total_budget.numeric' => 'O orçamento deve ser um valor numérico.'
         ]);
 
-        $validatedData['session_id'] = session()->getId();
+        //$validatedData['session_id'] = session()->getId();
 
         Project::create($validatedData);
 
